@@ -2,16 +2,19 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
   font-family: "Ubuntu", sans-serif;
 }
 
 body {
   background-color: black;
-  background-image: url(../img/CLIMA.png);
+  background-image: url(../img/CLIMA.webp);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 1rem;
+  transition: background 0.8s ease;
 
   background-position: center;
   background-size: cover;
@@ -27,11 +30,49 @@ body {
   padding: 2rem;
   color: #fdfdfd;
   border-radius: 1rem;
-  max-width: 400px;
+  width: 100%;
+  max-width: 420px;
+  backdrop-filter: blur(4px);
+}
+
+/* Fundo de acordo com o tempo (substitui o Unsplash Source, que saiu do ar) */
+body[data-tema="limpo"] { background: linear-gradient(160deg, #2193b0, #6dd5ed); }
+body[data-tema="nublado"] { background: linear-gradient(160deg, #606c88, #3f4c6b); }
+body[data-tema="chuva"] { background: linear-gradient(160deg, #283e51, #4b79a1); }
+body[data-tema="neve"] { background: linear-gradient(160deg, #83a4d4, #b6fbff); }
+body[data-tema="neblina"] { background: linear-gradient(160deg, #757f9a, #d7dde8); }
+body[data-tema="tempestade"] { background: linear-gradient(160deg, #141e30, #243b55); }
+body[data-tema="noite"] { background: linear-gradient(160deg, #0f2027, #203a43, #2c5364); }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.credits {
+  margin-top: 1.2rem;
+  font-size: 0.75rem;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.credits a {
+  color: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 /* Form */
-.form h3 {
+.form h1 {
+  font-size: 1.15rem;
   margin-bottom: 1rem;
 }
 
@@ -99,6 +140,21 @@ body {
   display: none;
 }
 
+#region {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+#weather-icon {
+  font-size: 2rem;
+  margin-left: 0.5rem;
+}
+
+#minmax {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
 #description-container {
   display: flex;
   justify-content: center;
@@ -117,10 +173,13 @@ body {
   align-items: center;
 }
 
-#details-container #umidity {
-  border-right: 1px solid #fff;
-  margin: 0.6rem;
-  padding: 0.6rem;
+#details-container p {
+  margin: 0.6rem 0;
+  padding: 0.3rem 0.6rem;
+}
+
+#details-container p + p {
+  border-left: 1px solid #fff;
 }
 
 /* Loader */
@@ -142,7 +201,7 @@ body {
 }
 
 #suggestions button {
-  min-width: 150px;
+  min-width: 140px;
   margin: 0.8rem;
   padding: 0.6rem 0.9rem;
   border-radius: 10rem;
@@ -159,4 +218,20 @@ body {
 #suggestions button:hover {
   opacity: 1;
   background-color: rgba(0, 0, 0, 0.44);
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 1.25rem;
+  }
+
+  #temperature {
+    font-size: 3rem;
+  }
+
+  #suggestions button {
+    min-width: 0;
+    flex: 1 1 40%;
+    margin: 0.4rem;
+  }
 }

@@ -2,18 +2,18 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Tiago Mendes">
-    <meta name="description" content="App Clima">
+    <meta name="description" content="Veja o clima atual de qualquer cidade: temperatura, sensação térmica, umidade e vento.">
     <meta name="keywords" content="Clima, App Clima">
-    <title>Clima App</title>
+    <title>App Clima</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛅</text></svg>">
     <link rel="stylesheet" href="css/styles.css" />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <!-- Font Awesome -->
@@ -26,54 +26,65 @@
     <script src="js/scripts.js" defer></script>
   </head>
   <body>
-    <div class="container">
-      <div class="form">
-        <h3>Confira o clima de uma cidade:</h3>
+    <main class="container">
+      <form class="form" id="search-form">
+        <h1>Confira o clima de uma cidade:</h1>
         <div class="form-input-container">
-          <input type="text" placeholder="Digite o nome da cidade" id="city-input">
-          <button id="search">
-            <i class="fa-solid fa-magnifying-glass"></i>
+          <label for="city-input" class="sr-only">Nome da cidade</label>
+          <input type="text" placeholder="Digite o nome da cidade" id="city-input" autocomplete="off" required>
+          <button id="search" type="submit" aria-label="Buscar">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          </button>
+          <button id="locate" type="button" aria-label="Usar minha localização" title="Usar minha localização">
+            <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
           </button>
         </div>
-      </div>
-      <div id="weather-data" class="hide">
+      </form>
+      <div id="weather-data" class="hide" aria-live="polite">
         <h2>
-          <i class="fa-solid fa-location-dot"></i> 
-          <span id="city"></span> 
-          <img id="country"></img>
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <span id="city"></span>
+          <img id="country" alt="">
         </h2>
+        <p id="region"></p>
         <p id="temperature"><span></span>&deg;C</p>
         <div id="description-container">
           <p id="description"></p>
-          <img src="" alt="Condições atuais" id="weather-icon" />
+          <span id="weather-icon" aria-hidden="true"></span>
         </div>
+        <p id="minmax"></p>
         <div id="details-container">
-          <p id="umidity">
-            <i class="fa-solid fa-droplet"></i> 
+          <p id="feels" title="Sensação térmica">
+            <i class="fa-solid fa-temperature-half" aria-hidden="true"></i>
             <span></span>
           </p>
-          <p id="wind">
-            <i class="fa-solid fa-wind"></i>
+          <p id="humidity" title="Umidade">
+            <i class="fa-solid fa-droplet" aria-hidden="true"></i>
+            <span></span>
+          </p>
+          <p id="wind" title="Vento">
+            <i class="fa-solid fa-wind" aria-hidden="true"></i>
             <span></span>
           </p>
         </div>
       </div>
-      <div id="error-message" class="hide">
+      <div id="error-message" class="hide" role="alert">
         <p>Não foi possível encontrar o clima de uma cidade com este nome.</p>
       </div>
-      <div id="loader" class="hide">
-        <i class="fa-solid fa-spinner"></i>
+      <div id="loader" class="hide" aria-label="Carregando">
+        <i class="fa-solid fa-spinner" aria-hidden="true"></i>
       </div>
       <div id="suggestions">
-        <button id="viena">Viena</button>
-        <button id="copenhague">Copenhague</button>
-        <button id="zurique">Zurique</button>
-        <button id="vancouver">Vancouver</button>
-        <button id="genebra">Genebra</button>
-        <button id="frankfurt">Frankfurt</button>
-        <button id="osaka">Osaka</button>
-        <button id="maceio">Maceió</button>
+        <button type="button" data-city="Viena">Viena</button>
+        <button type="button" data-city="Copenhague">Copenhague</button>
+        <button type="button" data-city="Zurique">Zurique</button>
+        <button type="button" data-city="Vancouver">Vancouver</button>
+        <button type="button" data-city="Genebra">Genebra</button>
+        <button type="button" data-city="Frankfurt">Frankfurt</button>
+        <button type="button" data-city="Osaka">Osaka</button>
+        <button type="button" data-city="Maceió">Maceió</button>
       </div>
-    </div>
+      <p class="credits">Dados: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a></p>
+    </main>
   </body>
 </html>
