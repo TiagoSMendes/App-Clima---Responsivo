@@ -1,0 +1,19 @@
+{
+  "_sobre": "Lido automaticamente pelo portfólio de Tiago Mendes. Edite para mudar como o projeto aparece lá.",
+  "titulo": {
+    "pt": "App Clima",
+    "en": "Weather app"
+  },
+  "descricao": {
+    "pt": "Clima atual de qualquer cidade ou da sua localização, com fundo que muda conforme o tempo. API Open-Meteo.",
+    "en": "Current weather for any city or your location, with a background that follows the conditions. Open-Meteo API."
+  },
+  "tags": [
+    "JavaScript",
+    "API",
+    "Geolocalização"
+  ],
+  "site": "",
+  "imagem": "portfolio.webp",
+  "ordem": 2
+}
